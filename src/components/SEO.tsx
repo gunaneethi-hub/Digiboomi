@@ -8,7 +8,7 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'DigiBoomi - Digital Marketing Agency | SEO, Social Media & PPC',
+  title = 'DigiBoomi | Digital Marketing Agency | SEO, Social Media & PPC',
   description = 'Transform your business with DigiBoomi\'s innovative digital marketing strategies. Specializing in SEO optimization, social media marketing, email campaigns, and PPC advertising.',
   canonical = 'https://www.digiboomi.com',
   ogImage = 'https://www.digiboomi.com/og-image.jpg'
