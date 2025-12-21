@@ -1,0 +1,42 @@
+# robots.txt for DigiBoomi
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl-delay (optional, usually not needed for modern crawlers)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.digiboomi.com/sitemap.xml
+
+# Block specific bots (optional - uncomment if needed)
+# User-agent: BadBot
+# Disallow: /
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+Follow: all
+
+# Googlebot Image
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Social Media Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
