@@ -56,6 +56,14 @@
 
 <body>
   <div id="root"></div>
+  
+  <!-- Fallback for users with JavaScript disabled -->
+  <noscript>
+    <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+      <h1>JavaScript Required</h1>
+      <p>This site requires JavaScript to be enabled. Please enable JavaScript in your browser settings and reload the page.</p>
+    </div>
+  </noscript>
 
   <!-- Vite entry -->
   <script type="module" src="/src/main.tsx"></script>
