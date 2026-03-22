@@ -152,19 +152,21 @@
     submitBtn.textContent = 'Sending…';
 
     try {
-      const response = await fetch(form.action, {
+      const formData = new FormData();
+      formData.append('name',    data.name);
+      formData.append('email',   data.email);
+      formData.append('phone',   data.phone);
+      formData.append('message', data.message);
+
+      await fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data),
+        mode: 'no-cors',
+        body: formData,
       });
 
-      if (response.ok) {
-        formStatus.className = 'form-status success';
-        formStatus.textContent = '✓ Thank you! Your message has been sent. We\'ll get back to you within 24 hours.';
-        form.reset();
-      } else {
-        throw new Error('Server error');
-      }
+      formStatus.className = 'form-status success';
+      formStatus.textContent = '✓ Thank you! Your message has been sent. We\'ll get back to you within 24 hours.';
+      form.reset();
     } catch {
       formStatus.className = 'form-status error';
       formStatus.textContent = 'Oops! Something went wrong. Please try again or email us directly at hello@digiboomi.com';
