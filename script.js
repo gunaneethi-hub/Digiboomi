@@ -9,6 +9,18 @@
 (function () {
   'use strict';
 
+  /* ---- Hero: mouse spotlight ---- */
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.addEventListener('mousemove', function (e) {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(2) + '%';
+      const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(2) + '%';
+      hero.style.setProperty('--mx', x);
+      hero.style.setProperty('--my', y);
+    });
+  }
+
   /* ---- Footer year ---- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
