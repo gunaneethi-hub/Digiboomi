@@ -6,10 +6,10 @@ import { useState, useEffect } from 'react';
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
-  { href: '/#ai-advantage', label: 'AI Marketing' },
+  { href: '/ai-marketing', label: 'AI Marketing' },
   { href: '/about', label: 'About' },
   { href: '/results', label: 'Results' },
-  { href: '/#testimonials', label: 'Testimonials' },
+  { href: '/testimonials', label: 'Testimonials' },
   { href: '/contact', label: 'Contact' },
 ];
 

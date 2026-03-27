@@ -30,7 +30,7 @@ export default function Footer() {
           <ul>
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/results">Our Results</Link></li>
-            <li><Link href="/#testimonials">Testimonials</Link></li>
+            <li><Link href="/testimonials">Testimonials</Link></li>
             <li><Link href="/contact">Contact</Link></li>
           </ul>
         </div>
