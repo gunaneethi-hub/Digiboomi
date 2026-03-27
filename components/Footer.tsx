@@ -16,7 +16,9 @@ export default function Footer() {
         <div className="footer__col">
           <h4>Services</h4>
           <ul>
-            <li><Link href="/services">SEO Optimisation</Link></li>
+            <li><Link href="/services">SEO &amp; GEO Optimisation</Link></li>
+            <li><Link href="/services">Website Design</Link></li>
+            <li><Link href="/services">Branding &amp; Identity</Link></li>
             <li><Link href="/services">Social Media</Link></li>
             <li><Link href="/services">Email Marketing</Link></li>
             <li><Link href="/services">PPC Advertising</Link></li>

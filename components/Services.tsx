@@ -9,13 +9,9 @@ export default function Services() {
 
         <div className="services__grid">
           <article className="service-card">
-            <div className="service-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-            </div>
-            <h3>SEO Optimisation</h3>
-            <p>Rank higher on Google for Chennai and pan-India searches. Our AI-driven SEO strategies deliver sustained organic traffic growth.</p>
+            <div className="service-card__icon" aria-hidden="true">🔍</div>
+            <h3>SEO &amp; GEO Optimisation</h3>
+            <p>Rank higher on Google and get featured in AI-generated answers (ChatGPT, Gemini, Perplexity). Our AI-driven SEO + Generative Engine Optimisation strategies drive organic traffic and AI visibility for Chennai businesses.</p>
           </article>
 
           <article className="service-card">
@@ -72,6 +68,18 @@ export default function Services() {
             </div>
             <h3>PPC Advertising</h3>
             <p>Maximise ROI with AI-optimised Google Ads and social media campaigns — precision targeting for Chennai and beyond.</p>
+          </article>
+
+          <article className="service-card">
+            <div className="service-card__icon" aria-hidden="true">💻</div>
+            <h3>Website Design &amp; Development</h3>
+            <p>Custom, conversion-optimised websites built for Chennai businesses. Fast, mobile-first, and designed to turn visitors into customers.</p>
+          </article>
+
+          <article className="service-card">
+            <div className="service-card__icon" aria-hidden="true">🎨</div>
+            <h3>Branding &amp; Identity</h3>
+            <p>Build a memorable brand with logo design, brand guidelines, and visual identity systems that set you apart in the Chennai market.</p>
           </article>
         </div>
       </div>

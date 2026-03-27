@@ -41,6 +41,11 @@ export default function AIAdvantage() {
             <h3>AI Chatbots &amp; Lead Nurturing</h3>
             <p>Capture and convert leads 24/7 with intelligent conversational automation.</p>
           </article>
+          <article className="ai-feature-card">
+            <div className="ai-feature-card__icon" aria-hidden="true">🌐</div>
+            <h3>Generative Engine Optimisation (GEO)</h3>
+            <p>Optimise your brand to appear in ChatGPT, Gemini, and Perplexity AI answers — the new frontier of search visibility beyond traditional Google search.</p>
+          </article>
         </div>
 
         <div className="ai-powered__bottom">
