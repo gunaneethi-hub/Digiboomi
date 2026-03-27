@@ -23,7 +23,7 @@ export default function Hero() {
           <h1 className="hero__heading hero-reveal hero-reveal--2">
             <span className="hero__heading-line">Grow Smarter.</span><br />
             <span className="hero__heading-line">Grow Faster.</span><br />
-            <span className="text-accent">With DigiBoomi.</span>
+            <span style={{ color: '#ffffff' }}>With DigiBoomi.</span>
           </h1>
 
           <p className="hero__subtext hero-reveal hero-reveal--4">
