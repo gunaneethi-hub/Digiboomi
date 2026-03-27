@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- Dot grid pattern -->
+  <defs>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.07)"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF4000" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF4000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <ellipse cx="600" cy="315" rx="500" ry="300" fill="url(#glow)"/>
+
+  <!-- Orange accent line top -->
+  <rect x="0" y="0" width="1200" height="4" fill="#FF4000"/>
+
+  <!-- Logo -->
+  <text x="600" y="230" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="96" font-weight="700" fill="#ffffff">Digi<tspan fill="#FF4000">Boomi</tspan></text>
+
+  <!-- Tagline -->
+  <text x="600" y="320" text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="32" font-weight="400" fill="rgba(255,255,255,0.65)"
+    letter-spacing="2">AI-Powered Digital Marketing · Chennai</text>
+
+  <!-- Divider -->
+  <rect x="520" y="360" width="160" height="2" rx="2" fill="#FF4000"/>
+
+  <!-- Sub tagline -->
+  <text x="600" y="420" text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="24" font-weight="400" fill="rgba(255,255,255,0.4)">Grow Smarter. Grow Faster.</text>
+
+  <!-- Website -->
+  <text x="600" y="570" text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="22" fill="rgba(255,255,255,0.3)">www.digiboomi.com</text>
+</svg>
