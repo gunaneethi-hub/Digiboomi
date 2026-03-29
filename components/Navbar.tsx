@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -82,7 +83,14 @@ export default function Navbar() {
           aria-label="DigiBoomi Home"
           onClick={(e) => { if (isHomepage) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); } }}
         >
-          <span className="logo-text">Digi<span className="logo-accent">Boomi</span></span>
+          <Image
+            src="/images/digiboomi-logo-white.svg"
+            alt="DigiBoomi"
+            width={140}
+            height={34}
+            priority
+            style={{ objectFit: 'contain' }}
+          />
         </Link>
 
         <nav className="navbar__links" id="navLinks" aria-label="Main navigation">

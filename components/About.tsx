@@ -1,6 +1,8 @@
-import Link from 'next/link';
+'use client';
+import { useModal } from '@/context/ModalContext';
 
 export default function About() {
+  const { openModal } = useModal();
   return (
     <section className="about" id="about">
       <div className="container">
@@ -60,7 +62,7 @@ export default function About() {
         </div>
 
         <div className="about__cta">
-          <Link href="/contact" className="btn btn--primary btn--lg">Work With Us</Link>
+          <button className="btn btn--primary btn--lg" onClick={openModal}>Work With Us</button>
         </div>
       </div>
     </section>

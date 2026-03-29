@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -8,7 +9,13 @@ export default function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <Link href="/" className="navbar__logo" aria-label="DigiBoomi Home">
-            <span className="logo-text">Digi<span className="logo-accent">Boomi</span></span>
+            <Image
+              src="/images/digiboomi-logo-white.svg"
+              alt="DigiBoomi"
+              width={140}
+              height={34}
+              style={{ objectFit: 'contain' }}
+            />
           </Link>
           <p>Transforming businesses through innovative digital marketing strategies.</p>
         </div>

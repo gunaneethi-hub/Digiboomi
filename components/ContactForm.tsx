@@ -2,15 +2,41 @@
 import { useState, FormEvent } from 'react';
 
 const FORM_ACTION =
-  'https://script.google.com/macros/s/AKfycbyDrFEeVORv38Ondcb_-cKpjbZS3ykSIlmIATrPrqv--a8R4F-smwJ0Iv6NX2iRE42p/exec';
+  'https://script.google.com/macros/s/AKfycbyUw0dy0rUF5feSS-X2bpvA6kP9yhpVZJqWf4tmJ40ywEClfNXag6mhVKFbixjWeNxV/exec';
+
+const SERVICES = [
+  'SEO Optimization',
+  'Social Media Marketing',
+  'Google Ads / PPC',
+  'Website Design',
+  'Branding & Identity',
+  'Not Sure / General Enquiry',
+];
+
+function ThankYou() {
+  return (
+    <div className="thankyou">
+      <svg className="thankyou__svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle className="thankyou__circle" cx="50" cy="50" r="45" stroke="#FF4000" strokeWidth="4" strokeLinecap="round" />
+        <polyline className="thankyou__tick" points="28,52 43,67 72,34" stroke="#FF4000" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <h3 className="thankyou__heading">Thank You!</h3>
+      <p className="thankyou__msg">We&apos;ve received your message and will get back to you within 24 hours.</p>
+    </div>
+  );
+}
 
 export default function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | ''; message: string }>({
-    type: '',
-    message: '',
-  });
+  const [status, setStatus] = useState<{ type: 'error' | ''; message: string }>({ type: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleReset() {
+    setSubmitted(false);
+    setErrors({});
+    setStatus({ type: '', message: '' });
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,20 +48,21 @@ export default function ContactForm() {
       name: getValue('name'),
       email: getValue('email'),
       phone: getValue('phone'),
+      service: (form.elements.namedItem('service') as HTMLSelectElement).value,
       message: getValue('message'),
     };
 
     const newErrors: Record<string, string> = {};
     if (!data.name.trim()) newErrors.name = 'Please enter your name.';
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!data.email.trim()) newErrors.email = 'Please enter your email address.';
-    else if (!emailRe.test(data.email.trim())) newErrors.email = 'Please enter a valid email address.';
     if (!data.phone.trim()) newErrors.phone = 'Please enter your phone number.';
-    if (!data.message.trim()) newErrors.message = 'Please tell us about your project.';
+    if (data.email.trim()) {
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(data.email.trim())) newErrors.email = 'Please enter a valid email address.';
+    }
+    if (!data.service) newErrors.service = 'Please select a service.';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setStatus({ type: '', message: '' });
       return;
     }
 
@@ -45,16 +72,10 @@ export default function ContactForm() {
       const formData = new FormData();
       Object.entries(data).forEach(([k, v]) => formData.append(k, v));
       await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: formData });
-      setStatus({
-        type: 'success',
-        message: "✓ Thank you! Your message has been sent. We'll get back to you within 24 hours.",
-      });
       form.reset();
+      setSubmitted(true);
     } catch {
-      setStatus({
-        type: 'error',
-        message: 'Oops! Something went wrong. Please try again or email us directly at hello@digiboomi.com',
-      });
+      setStatus({ type: 'error', message: 'Oops! Something went wrong. Please try again or email us directly at hello@digiboomi.com' });
     } finally {
       setSubmitting(false);
     }
@@ -105,82 +126,57 @@ export default function ContactForm() {
               </div>
             </li>
           </ul>
-
-          <div className="contact__socials">
-            <a href="https://www.instagram.com/digiboomi" target="_blank" rel="noopener noreferrer" aria-label="DigiBoomi on Instagram" className="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/digiboomi" target="_blank" rel="noopener noreferrer" aria-label="DigiBoomi on LinkedIn" className="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a>
-          </div>
         </div>
 
         <div className="contact__form-wrap">
-          <h3>Get a Free Consultation</h3>
-          <p>Fill out the form below and our team will get back to you within 24 hours.</p>
+          {submitted ? (
+            <ThankYou />
+          ) : (
+            <>
+              <h3>Get a Free Consultation</h3>
+              <p>Fill out the form below and our team will get back to you within 24 hours.</p>
 
-          <form className="contact__form" id="contactForm" onSubmit={handleSubmit} noValidate>
-            <div className="form-group">
-              <label htmlFor="name">Your Name <span aria-hidden="true">*</span></label>
-              <input
-                type="text" id="name" name="name" placeholder="Your Name"
-                required autoComplete="name"
-                className={errors.name ? 'error' : ''}
-              />
-              {errors.name && <span className="form-error visible" id="nameError">{errors.name}</span>}
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email Address <span aria-hidden="true">*</span></label>
-              <input
-                type="email" id="email" name="email" placeholder="your@email.com"
-                required autoComplete="email"
-                className={errors.email ? 'error' : ''}
-              />
-              {errors.email && <span className="form-error visible" id="emailError">{errors.email}</span>}
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number <span aria-hidden="true">*</span></label>
-              <input
-                type="tel" id="phone" name="phone" placeholder="+91 98765 43210"
-                required autoComplete="tel"
-                className={errors.phone ? 'error' : ''}
-              />
-              {errors.phone && <span className="form-error visible" id="phoneError">{errors.phone}</span>}
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message <span aria-hidden="true">*</span></label>
-              <textarea
-                id="message" name="message" placeholder="Tell us about your project..."
-                rows={4} required
-                className={errors.message ? 'error' : ''}
-              />
-              {errors.message && <span className="form-error visible" id="messageError">{errors.message}</span>}
-            </div>
+              <form className="contact__form" id="contactForm" onSubmit={handleSubmit} noValidate>
+                <div className="form-group">
+                  <label htmlFor="name">Your Name <span aria-hidden="true">*</span></label>
+                  <input type="text" id="name" name="name" placeholder="Your Name" required autoComplete="name" className={errors.name ? 'error' : ''} />
+                  {errors.name && <span className="form-error visible" id="nameError">{errors.name}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number <span aria-hidden="true">*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required autoComplete="tel" className={errors.phone ? 'error' : ''} />
+                  {errors.phone && <span className="form-error visible" id="phoneError">{errors.phone}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email Address <span className="optional-label">(optional)</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" autoComplete="email" className={errors.email ? 'error' : ''} />
+                  {errors.email && <span className="form-error visible" id="emailError">{errors.email}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="service">Service Interested In <span aria-hidden="true">*</span></label>
+                  <select id="service" name="service" defaultValue="" className={errors.service ? 'error' : ''}>
+                    <option value="" disabled>Select a service…</option>
+                    {SERVICES.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                  {errors.service && <span className="form-error visible" id="serviceError">{errors.service}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="message">Message <span className="optional-label">(optional)</span></label>
+                  <textarea id="message" name="message" placeholder="Tell us about your project..." rows={4} className={errors.message ? 'error' : ''} />
+                </div>
 
-            {status.message && (
-              <div className={`form-status ${status.type}`} aria-live="polite">
-                {status.message}
-              </div>
-            )}
+                {status.message && (
+                  <div className={`form-status ${status.type}`} aria-live="polite">{status.message}</div>
+                )}
 
-            <button
-              type="submit"
-              className="btn btn--primary btn--full"
-              id="submitBtn"
-              disabled={submitting}
-            >
-              {submitting ? 'Sending…' : 'Send Message'}
-            </button>
-          </form>
+                <button type="submit" className="btn btn--primary btn--full" id="submitBtn" disabled={submitting}>
+                  {submitting ? 'Sending…' : 'Send Message'}
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import ContactModal from '@/components/ContactModal';
+import { ModalProvider } from '@/context/ModalContext';
 import '../styles.css';
 
 const schemaData = {
@@ -176,9 +179,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ModalProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <WhatsAppButton />
+          <ContactModal />
+        </ModalProvider>
       </body>
     </html>
   );

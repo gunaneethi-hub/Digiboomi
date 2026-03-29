@@ -1,6 +1,8 @@
-import Link from 'next/link';
+'use client';
+import { useModal } from '@/context/ModalContext';
 
 export default function AIAdvantage() {
+  const { openModal } = useModal();
   return (
     <section className="ai-powered" id="ai-advantage">
       <div className="container">
@@ -46,9 +48,8 @@ export default function AIAdvantage() {
             <h3>Generative Engine Optimisation (GEO)</h3>
             <p>Optimise your brand to appear in ChatGPT, Gemini, and Perplexity AI answers — the new frontier of search visibility beyond traditional Google search.</p>
           </article>
-        </div>
 
-        <div className="ai-powered__bottom">
+          <div className="ai-powered__bottom">
           <div className="ai-powered__stats">
             <div className="ai-stat">
               <strong>94<span>/100</span></strong>
@@ -65,7 +66,8 @@ export default function AIAdvantage() {
               <span>Average traffic increase</span>
             </div>
           </div>
-          <Link href="/contact" className="btn btn--primary btn--lg">Get AI-Powered Growth</Link>
+          <button className="btn btn--primary btn--lg" onClick={openModal}>Get AI-Powered Growth</button>
+          </div>
         </div>
       </div>
     </section>
